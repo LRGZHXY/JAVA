@@ -1,12 +1,63 @@
 ## 基础概念
 
+### 关键字
+
+被java赋予了特定含义的英文单词，字母全部小写，有特殊颜色标记
+
+class表示一个类，后面跟随类名
+
+### 字面量
+
+数据在程序中的书写格式
+
+字符串类型：用双引号括起来的内容
+
+字符类型：用单引号括起来的，内容只有一个
+
+空类型:一个特殊的值->NULL(null不能直接打印，只能以字符串的形式进行打印->System.out.println("null");)
+
+### \t:制表符
+
+在打印的时候，把<u>前面</u>字符串的长度补齐到8或8的整数倍，最少补1个空格，最多补8个空格
+
+```java
+System.out.println("abc"+'\t');//补5个空格
+```
+
+对齐作用
+
+```java
+System.out.println("abcd"+'\t'+"efg");
+System.out.println("xyz"+'\t'+"12");
+```
+
+> abcd    efg(中间有4个空格)
+>
+> xyz     12(中间有5个空格)
+
+### 进制转换
+
+JDK7以上：二进制：0b  八进制：0  十六进制：0x  
+
+#### 任意进制转十进制
+
+系数*基数的权次幂再相加（权：从右往左，依次为0 1 2 3...)
+
+例：abc(十六进制转十进制)：10&times;16<sup>2</sup>+11&times;16<sup>1</sup>+12&times;16<sup>0</sup>=2748
+
+#### 十进制转其他进制
+
+除基取余法：不断的除以基数（几进制，基数就是几）得到余数，直到商为0，再将余数倒着拼接起来即可
+
 ### IDEA
 
 project->module->package->class(项目-模块-包-类)
 
-psvm==public static void main(String[] args){ }
+1.psvm==public static void main(String[] args){ }
 
-sout==System.out.println( );
+2.sout==System.out.println( );
+
+3.100.fori==for(int i=0;i<100;i++){ }
 
 #### 快捷键
 
@@ -14,13 +65,41 @@ Ctrl+alt+L：自动格式化代码
 
 ### Scanner
 
-1.导包：import java.util.Scanner;
-
-2.创建对象：Scanner sc=new Scanner(System.in);
-
-3.接受数据：int i=sc.nextInt();
-
 Scanner可以接受键盘录入的数字
+
+1.导包（找到这个类在哪）：import java.util.Scanner;
+
+2.创建对象（表示要开始使用这个类）：Scanner sc=new Scanner(System.in);
+
+3.接受数据（真正开始使用）：int i=sc.nextInt();
+
+### Random
+
+Random可以生成一个随机数
+
+1.导包：import java.util.Random;
+
+2.创建对象：Random r=new Random();
+
+3.接受数据：int i=r.nextInt(随机数的范围);
+
+包头不包尾，包左不包右（若括号内是10，则范围为0~9）
+
+#### 生成任意数到任意数之间的随机数
+
+例：生成7~15之间的随机数
+
+1.将这个范围头尾都减去一个值，让其范围从0开始  -7  0~8
+
+2.右边界加一  8+1=9
+
+3.加上第一步减去的值
+
+```java
+Random r=new Random();
+int number=r.nextInt(9)+7;//7~15
+// 0~8+7
+```
 
 ## 运算符
 
@@ -62,9 +141,7 @@ Scanner可以接受键盘录入的数字
 
 ^:逻辑异或 相同为false,不同为true
 
-短路逻辑运算符:1.短路与：&& 
-
-​			      2.短路或： ||
+短路逻辑运算符:1.短路与：&&   2.短路或： ||
 
 &|:无论左边true false,右边都要执行
 
@@ -96,17 +173,67 @@ Scanner可以接受键盘录入的数字
 
 例: boolean flag=true;  if(flag){ ...}
 
-switch case语句：switch(表达式){case.....;}  表达式取值为byte、short、 int、 char,JDK5以后可以是枚举,JDK7以后可以是String（字符串）.
+### switch case语句
 
+switch(表达式){case.....;}  表达式取值为byte、short、 int、 char,JDK5以后可以是枚举,JDK7以后可以是String（字符串）.
 
+#### default的位置和省略
 
+1.default不一定是写在最下面的，可以写在任意位置
 
+2.default可以省略，语法不会有问题，但不建议省略
 
+#### case穿透
 
+表达式跟每一个case进行匹配，如果匹配上了，就会执行对应语句体，如果这个语句体中没有break，程序会执行下一个的case语句体，直到遇到break或者大括号为止
 
+#### JDK12新特性
 
+```java
+int number=1;
+switch(number){
+    case 1-> System.out.println("1");
+    case 2-> System.out.println("2");
+    default -> System.out.println("error");
+}
+```
 
+### do...while循环
 
+先执行，后判断
 
+ps:1.continue:跳过本次循环，继续执行下次循环
 
+2.break:结束整个循环
 
+## 数组
+
+### 数组介绍
+
+数组容器在存储数据的时候，需要结合隐式转换考虑
+
+int类型的容器数组：byte short int
+
+double类型的容器数组：byte short int long float double
+
+### 数组的定义
+
+格式一：数据类型 [ ]数组名 (int []array)
+
+格式二：数据类型 数组名[ ]  (int array[])
+
+### 数组的初始化
+
+#### 静态初始化
+
+完整格式：数据类型 [ ]数组名=new 数据类型[]{元素1，元素2，...}
+
+```java
+int[] array=new int[]{1,2,3};
+```
+
+简化格式：数据类型 [ ]数组名={元素1，元素2，...}
+
+```java
+int[] array={1,2,3};
+```
