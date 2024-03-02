@@ -1,5 +1,5 @@
 package com.practice2;
-
+//将数字打乱顺序
 import java.util.Random;
 
 public class test5 {

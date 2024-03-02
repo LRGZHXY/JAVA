@@ -1,5 +1,5 @@
 package com.practice2;
-
+//反向排序
 public class test4 {
     public static void main(String[] args) {
         int[] arr={1,2,3,4,5};
