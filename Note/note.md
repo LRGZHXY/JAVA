@@ -58,6 +58,18 @@
   - [this关键字（就近原则）](#this关键字就近原则)
   - [构造方法](#构造方法)
     - [执行时机](#执行时机)
+  - [标准的JavaBean类](#标准的javabean类)
+  - [对象的内存图](#对象的内存图)
+    - [一个对象的内存图](#一个对象的内存图)
+      - [创建对象](#创建对象)
+    - [两个对象的内存图](#两个对象的内存图)
+    - [两个引用指向同一个对象](#两个引用指向同一个对象)
+    - [基本数据类型](#基本数据类型-1)
+    - [引用数据类型](#引用数据类型)
+    - [this的内存原理](#this的内存原理)
+    - [成员和局部](#成员和局部)
+      - [成员变量](#成员变量)
+      - [局部变量](#局部变量)
 ## 基础概念
 
 ### 关键字
@@ -200,6 +212,7 @@ System.out.println();//不打印任何数据，只做换行处理
 - Ctrl+alt+M：自动抽取方法（可以自动识别代码中相似的部分并生成一个方法）
 - 选中重复项+shift+F6:变量的批量修改
 - Ctrl+alt+T:给选中的代码块添加包围代码,比如`if`、`while`等结构。
+- alt+insert:快速生成标准的javabean
 
 ### Scanner
 
@@ -526,7 +539,7 @@ public static void getsum(int num1,int num2)/*形参*/{
 }
 ```
 
-![]()形参：形式参数，是指方法`定义`中的参数
+形参：形式参数，是指方法`定义`中的参数
 
 实参：实际参数，方法`调用`中的参数
 
@@ -647,6 +660,8 @@ public class Phone{
 
 “get..()”方法：获取成员变量的值
 
+
+
 ### this关键字（就近原则）
 
 如果成员变量和局部变量重名，会默认使用局部变量的值，加上`this关键字`之后，会使用成员变量的值
@@ -665,7 +680,16 @@ public class Person {
 
 ### 构造方法
 
+作用：在创建对象的时候给成员变量进行赋值
+
 没有返回值类型，没有void
+
+```java
+//格式
+修饰符 类名（参数）{
+    方法体；
+}
+```
 
 #### 执行时机
 
@@ -673,3 +697,155 @@ public class Person {
 
 2.每创建一次对象，就会调用一次构造方法
 
+构造方法的重载：带参构造方法和无参构造方法，两者方法名相同，但是参数不同，这叫做构造方法的重载
+
+### 标准的JavaBean类
+
+1.类名要见名知意
+
+2.成员变量使用private修饰
+
+3.至少提供两个构造方法（无参构造方法+带全部参数的构造方法）
+
+4.成员方法
+
+- 提供每一个成员变量对应的set...()/get...()
+- 如果还有其他行为，也需要写上
+
+```java
+public class User {
+
+    //属性
+    private String username;
+    private String password;
+    private String email;
+    private String gender;
+    private int age;
+    
+    //快捷键：alt+insert
+    //插件ptg:1秒生成标准JavaBean
+    
+    //空参
+    public User() {
+    }
+
+    //带全部参数构造
+    public User(String username, String password, String email, String gender, int age) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.age = age;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+}
+```
+
+### 对象的内存图
+
+字节码文件(.class)加载时进入<u>**方法区**</u>
+
+当方法被调用时要进**<u>栈</u>**执行（方法里面定义的变量也是在栈内存中）（执行完之后出栈）
+
+<u>**堆**</u>内存：new出来的东西会在堆中开辟空间并产生地址
+
+#### 一个对象的内存图
+
+##### 创建对象
+
+1.加载class文件（方法区）
+
+2.申明局部变量（栈）
+
+3.在堆内存中开辟一个空间（有成员变量和成员方法的地址）
+
+4.默认初始化（null/0）
+
+5.显示初始化（int age=23;）
+
+6.构造方法初始化（有参构造）
+
+7.将堆内存中的地址赋值给左边的局部变量
+
+#### 两个对象的内存图
+
+第二次创建对象时不需要再次加载.class字节码文件
+
+两个对象new创建的空间是相互独立的
+
+#### 两个引用指向同一个对象
+
+```java
+Student stu1=new Student();
+Student stu2=stu1;
+```
+
+当两个变量指向同一块空间时，只要有其中一个变量改变了这块空间中的值，当另一个变量再次访问这块空间时，就是改变之后的结果
+
+#### 基本数据类型
+
+变量中存储真实的数据值（int a=10;），赋值给其他变量时，赋的是真实的值
+
+#### 引用数据类型
+
+对象中真实的数据存储在堆中，变量（栈）记录其他空间的地址值，赋值给其他变量时，赋的是地址值
+
+#### this的内存原理
+
+this的作用：区分局部变量和成员变量
+
+this的本质：代表方法调用者的地址值
+
+#### 成员和局部
+
+##### 成员变量
+
+- 类中方法外的变量
+- 有默认初始化值
+- 在堆（对象）内存中
+
+##### 局部变量
+
+- 方法内的变量或形参
+- 没有初始化值，使用前需要赋值
+- 在栈（方法）内存中
