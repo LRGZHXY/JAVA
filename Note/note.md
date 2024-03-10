@@ -71,6 +71,10 @@
     - [成员和局部](#成员和局部)
       - [成员变量](#成员变量)
       - [局部变量](#局部变量)
+- [字符串](#字符串)
+  - [API](#api)
+  - [String](#string)
+    - [创建String对象](#创建string对象)
 ## 基础概念
 
 ### 关键字
@@ -114,7 +118,7 @@ JDK7以上：二进制：0b  八进制：0  十六进制：0x
 
 #### 任意进制转十进制
 
-系数*基数的权次幂再相加（权：从右往左，依次为0 1 2 3...)
+系数*基数的权次幂再相加（权：从右往左，依次为0 1 2 3...）
 
 例：abc(十六进制转十进制)：10&times;16<sup>2</sup>+11&times;16<sup>1</sup>+12&times;16<sup>0</sup>=2748
 
@@ -752,7 +756,7 @@ public class User {
         this.gender = gender;
         this.age = age;
     }
-
+	//get和set方法
     public String getUsername() {
         return username;
     }
@@ -864,3 +868,35 @@ this的本质：代表方法调用者的地址值
 - 方法内的变量或形参
 - 没有初始化值，使用前需要赋值
 - 在栈（方法）内存中
+
+## 字符串
+
+### API
+
+API:应用程序编程接口
+
+Java API:JDK中提供的各种功能的java类
+
+### String
+
+String是Java定义好的一个类，定义在java.lang包中，使用的时候不需要导包
+
+字符串的内容是不会发生改变的，它的对象在创建之后不能被修改
+
+#### 创建String对象
+
+1.直接赋值
+
+```java
+String name="abc";
+```
+
+2.new
+
+```java
+public String()//创建空白字符串，不含任何内容
+public String(String original)//根据传入的字符串，创建字符串对象
+public String(char[] chs)//根据字符数组，创建字符串对象
+public String(byte[] chs)//根据字节数组，创建字符串对象
+```
+
