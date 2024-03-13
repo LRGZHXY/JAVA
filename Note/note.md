@@ -75,6 +75,12 @@
   - [API](#api)
   - [String](#string)
     - [创建String对象](#创建string对象)
+    - [常用方法](#常用方法)
+      - [比较：==](#比较)
+        - [字符串内容比较](#字符串内容比较)
+      - [遍历字符串](#遍历字符串)
+  - [StringBuilder](#stringbuilder)
+  - [StringJoiner](#stringjoiner)
 ## 基础概念
 
 ### 关键字
@@ -899,4 +905,73 @@ public String(String original)//根据传入的字符串，创建字符串对象
 public String(char[] chs)//根据字符数组，创建字符串对象
 public String(byte[] chs)//根据字节数组，创建字符串对象
 ```
+
+- 当使用双引号**直接赋值**时，系统会检查该字符串在**串池**(StringTable，在堆内存中)中是否存在（不存在：创建新的；存在：复用）
+
+- new每次都会在堆里创建一块新的小空间
+
+#### 常用方法
+
+##### 比较：==
+
+基本数据类型：比较数据值
+
+引用数据类型：比较地址值
+
+###### 字符串内容比较
+
+boolean equals方法（要比较的字符串）-完全一样结果才是true,否则为false
+
+```java
+boolean result=s1.equals(s2);
+```
+
+boolean equalsIgnoreCase（要比较的字符串）-忽略英文状态下大小写的比较
+
+- 键盘录入的字符串是new出来的
+
+##### 遍历字符串
+
+```java
+for(int i=0;i<str.length();i++){}//str.length().fori
+```
+
+```java
+public char charAT(int index)//根据索引返回字符
+    
+public int length()//返回此字符串的长度
+    
+String substring(int beginIndex,int endIndex)//截取（包头不包尾，包左不包右）
+String substring(int beginIndex)//截取到末尾
+    
+String replace(旧值，新值）//替换
+```
+
+### StringBuilder
+
+StringBuilder可以看成一个容器，创建之后里面的内容可以改变
+
+作用：提高字符串的操作效率
+
+```java
+public StringBuilder append(任意类型)//添加数据，并返回对象本身
+    
+public StringBuilder reverse()//反转容器中的内容
+    
+public int length()//返回长度（字符出现的个数）
+    
+public String toString()//通过toString()就可以实现把StringBuilder转换成String
+```
+
+StringBuilder打印对象不是地址值而是属性值
+
+> 链式编程（当我们在调用一个方法的时候，不需要用变量接收它的结果，可以继续调用其他方法）
+
+```java
+int len=getString().substring(1).replace(
+        "A","Q"
+).length();
+```
+
+### StringJoiner
 
