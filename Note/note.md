@@ -83,6 +83,9 @@
     - [StringBuilder源码分析](#stringbuilder源码分析)
   - [StringJoiner](#stringjoiner)
   - [字符串拼接的底层原理](#字符串拼接的底层原理)
+- [集合](#集合)
+  - [ArrayList](#arraylist)
+    - [基本数据类型对应的包装类](#基本数据类型对应的包装类)
 ## 基础概念
 
 ### 关键字
@@ -1060,3 +1063,23 @@ ArrayList<String> list=new ArrayList<String>();//JDK7以前
 
 ArrayList<String> list=new ArrayList<>();//JDK7以后
 ```
+
+ArrayList是java已经写好的一个类，这个类在底层做了一些处理，打印对象不是地址值，而是集合中存储数据内容，在展示的时候会拿[]把所有的数据进行包裹
+
+```java
+//成员方法
+boolean add(E e)//添加元素，返回值表示是否添加成功
+
+boolean remove(E e)//删除指定元素，返回值表示是否删除成功
+E remove(int index)//删除指定索引的元素，返回被删除元素
+
+E set(int index,E e)//修改指定索引下的元素，返回原来的元素
+
+E get(int index)//获取指定索引的元素
+int size()//集合的长度，也就是集合中元素的个数
+```
+
+#### 基本数据类型对应的包装类
+
+byte-Byte	short-Short	char-**Character**	int-**Integer**	long-Long	float-Float	double-Double	boolean-Boolean
+
