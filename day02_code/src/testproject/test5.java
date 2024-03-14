@@ -1,2 +1,5 @@
-package testproject;public class test5 {
+package testproject;
+
+public class test5 {
+
 }
