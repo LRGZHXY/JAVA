@@ -80,7 +80,9 @@
         - [字符串内容比较](#字符串内容比较)
       - [遍历字符串](#遍历字符串)
   - [StringBuilder](#stringbuilder)
+    - [StringBuilder源码分析](#stringbuilder源码分析)
   - [StringJoiner](#stringjoiner)
+  - [字符串拼接的底层原理](#字符串拼接的底层原理)
 ## 基础概念
 
 ### 关键字
@@ -944,7 +946,7 @@ public int length()//返回此字符串的长度
 String substring(int beginIndex,int endIndex)//截取（包头不包尾，包左不包右）
 String substring(int beginIndex)//截取到末尾
     
-String replace(旧值，新值）//替换
+String replace(旧值，新值)//替换
 ```
 
 ### StringBuilder
@@ -954,12 +956,14 @@ StringBuilder可以看成一个容器，创建之后里面的内容可以改变
 作用：提高字符串的操作效率
 
 ```java
+//构造方法
+public StringBuilder()
+public StringBuilder(String str)
+    
+//成员方法
 public StringBuilder append(任意类型)//添加数据，并返回对象本身
-    
 public StringBuilder reverse()//反转容器中的内容
-    
 public int length()//返回长度（字符出现的个数）
-    
 public String toString()//通过toString()就可以实现把StringBuilder转换成String
 ```
 
@@ -973,5 +977,60 @@ int len=getString().substring(1).replace(
 ).length();
 ```
 
+**StringBuilder提高效率原理**
+
+所有要拼接的字符串都会往StringBuilder中放，不会创建很多无用的空间，节约内存
+
+#### StringBuilder源码分析
+
+- 默认创建一个长度为16的字节数组
+- 添加的内容长度小于16，直接存
+- 添加的容量大于16会扩容（16*2+2=34）
+- 如果扩容之后还不够，以实际长度为准
+
+```java
+StringBuilder sb=new StringBuilder();
+System.out.println(sb.capacity());//16
+```
+
 ### StringJoiner
+
+```java
+StringJoiner sj=new StringJoiner(",","[","]");
+```
+
+StringJoiner跟StringBuilder一样，也可以看成是一个容器，创建之后里面的内容是可变的（JDK8出现的）
+
+```java
+//构造方法
+public StringJoiner(间隔符号)//创建一个StingJoiner对象，指定拼接时的间隔符号
+public StringJoiner(间隔符号，开始符号，结束符号)//创建一个StingJoiner对象，指定拼接时的间隔符号、开始符号、结束符号
+    
+//成员方法
+public StringJoiner add(添加的内容)//添加数据，并返回对象本身
+public int length()//返回长度（字符出现的个数）
+public String toString()//返回一个字符串（该字符串是拼接之后的结果）
+```
+
+### 字符串拼接的底层原理
+
+- 如果没有变量参与，都是字符串直接相加，编译之后就是拼接之后的结果，会复用串池中的字符串
+
+```java
+String s="a"+"b"+"c";
+```
+
+- 如果有变量参与，每一行拼接的代码，都会在内存中创建新的字符串，浪费内存
+
+```java
+String s1="a";
+String s2=s1+"b";
+//相当于 new StringBuilder().append(s1).append("b").toString();
+```
+
+> 字符串拼接时，如果有变量：
+>
+> JDK8以前：系统底层会自动创建一个StringBuilder对象，然后再调用其append方法完成拼接，拼接后，再调用其toString方法转换为String类型，而toString方法的底层是直接newe了一个字符串对象
+>
+> JDK8以后：系统会预估字符串要拼接的总大小，把要拼接的内容都放在数组中，此时也是产生了一个新的字符串
 
