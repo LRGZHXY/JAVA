@@ -376,6 +376,18 @@ switch(number){
 }
 ```
 
+```java
+public static String changeLuoMa(char numnber){
+    String str=switch(number){
+        case'0'->"";
+        case'1'->"I";
+        case'2'->"II";
+        default->str="";
+    };
+    return str;
+}
+```
+
 ### do...while循环
 
 先执行，后判断
@@ -1034,3 +1046,17 @@ String s2=s1+"b";
 >
 > JDK8以后：系统会预估字符串要拼接的总大小，把要拼接的内容都放在数组中，此时也是产生了一个新的字符串
 
+## 集合
+
+- 集合可以存引用数据类型，基本数据类型需要变成**包装类**再存储
+- 集合长度可变
+
+### ArrayList
+
+泛型：<E>限定集合中存储数据的类型
+
+```java
+ArrayList<String> list=new ArrayList<String>();//JDK7以前
+
+ArrayList<String> list=new ArrayList<>();//JDK7以后
+```
