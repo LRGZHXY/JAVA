@@ -86,6 +86,9 @@
 - [集合](#集合)
   - [ArrayList](#arraylist)
     - [基本数据类型对应的包装类](#基本数据类型对应的包装类)
+- [面向对象进阶](#面向对象进阶)
+  - [static](#static)
+  - [继承](#继承)
 ## 基础概念
 
 ### 关键字
@@ -221,14 +224,18 @@ System.out.print("abc");//只打印abc,不换行
 System.out.println();//不打印任何数据，只做换行处理
 ```
 
+```java
+System.exit(0);//停止虚拟机运行
+```
+
 #### 快捷键
 
 - shift+alt+L：自动格式化代码
-
 - Ctrl+alt+M：自动抽取方法（可以自动识别代码中相似的部分并生成一个方法）
 - 选中重复项+shift+F6:变量的批量修改
 - Ctrl+alt+T:给选中的代码块添加包围代码,比如`if`、`while`等结构。
 - alt+insert:快速生成标准的javabean
+- shift+alt+方向键：移动代码
 
 ### Scanner
 
@@ -1082,4 +1089,44 @@ int size()//集合的长度，也就是集合中元素的个数
 #### 基本数据类型对应的包装类
 
 byte-Byte	short-Short	char-**Character**	int-**Integer**	long-Long	float-Float	double-Double	boolean-Boolean
+
+## 面向对象进阶
+
+工具类
+
+帮助我们做一些事情，但是不描述任何事物的类
+
+方法都定义为静态
+
+### static
+
+静态变量
+
+- 被该类所有对象共享
+- 不属于对象，属于类
+- 随着类的加载而加载，优先于对象存在
+
+静态方法
+
+- 静态方法中，只能访问静态
+- 非静态方法可以访问所有
+- 静态方法中没有this关键字
+
+### 继承
+
+关键字extends可以让一个类和另一个类建立起继承关系
+
+```java
+public class Student extends Person {}
+```
+
+Student称为子类（派生类），Person称为父类（基类或超类）
+
+Java只支持单继承，不支持多继承，但支持多层继承
+
+每一个类都直接或间接的继承于Object
+
+**子类能继承父类中的哪些内容**
+
+构造方法都不能继承，成员变量都能继承，非私有成员方法能继承，私有成员方法不能继承
 
