@@ -19,7 +19,8 @@ public class TriangleArea {
         double area = Math.abs((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2.0);
 
         // Display the result
-        System.out.println("The area of the triangle is " + area);
+        System.out.print("The area of the triangle is ");
+        System.out.println(String.format("%.1f",area));
     }
 }
 
