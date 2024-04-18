@@ -1315,3 +1315,10 @@ new 类名或者接口名(){
 - currentTimeMills（）：返回当前系统从时间原点开始的时间毫秒值形式
 - arraycopy（数据源数组，起始索引，目的地数组，起始索引，拷贝个数）：数组拷贝
 
+**Runtime**
+
+![QQ20240418-runtime](/home/lr/图片/QQ20240418-runtime.png)
+
+**Object**
+
+Object类中的方法可以被所有子类访问
