@@ -1322,3 +1322,10 @@ new 类名或者接口名(){
 **Object**
 
 Object类中的方法可以被所有子类访问
+
+![QQ20240421-object3](/home/lr/图片/QQ20240421-object3.png)
+
+![QQ20240421-object2](/home/lr/图片/QQ20240421-object2.png)
+
+
+
