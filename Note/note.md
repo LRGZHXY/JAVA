@@ -1327,5 +1327,22 @@ Object类中的方法可以被所有子类访问
 
 ![QQ20240421-object2](/home/lr/图片/QQ20240421-object2.png)
 
+## 多线程
+
+**并发**:同一时刻,有多个指令在单个CPU上交替执行
+
+**并行**:同一时刻,有多个指令在多个CPU上同时执行
+
+**继承Thread类实现**
+
+自己定义一个类继承Thread类,重写run方法,创建子类对象并启动线程
 
 
+
+(deprecated) JavaFX
+
+*MySQL,  (JDBC)  ->Mybatis/Mybatis-plus (Redis), *NIO -> *Netty, HTTP->SpringBoot
+
+HTML,CSS,JS
+
+*Maven
