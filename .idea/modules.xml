@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Exam/Exam.18.iml" filepath="$PROJECT_DIR$/Exam/Exam.18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exam18/Exam.18.iml" filepath="$PROJECT_DIR$/Exam18/Exam.18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Exam15/Exam15.iml" filepath="$PROJECT_DIR$/Exam15/Exam15.iml" />
       <module fileurl="file://$PROJECT_DIR$/Exam17/Exam17.iml" filepath="$PROJECT_DIR$/Exam17/Exam17.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/JAVA.iml" filepath="$PROJECT_DIR$/.idea/JAVA.iml" />
       <module fileurl="file://$PROJECT_DIR$/Thread/Thread.iml" filepath="$PROJECT_DIR$/Thread/Thread.iml" />
