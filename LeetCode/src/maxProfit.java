@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
 class Solution {
     public int maxProfit(int[] prices) {
         if(prices.length==1){
@@ -12,5 +15,7 @@ class Solution {
             }
         }
         return sum;
+
+
     }
 }
